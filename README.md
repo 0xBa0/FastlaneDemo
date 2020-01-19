@@ -159,14 +159,14 @@
    
    | Targets             | Bundle Identifier               | Scheme                             | .env文件       |
    | ------------------- | ------------------------------- | ---------------------------------- | ------------ |
-   | FastlaneDemo        | com.wesoft.FastlaneDemo.main    | FastlaneDemo, FastlaneDemoQA       | .env.main    |
-   | FastlaneDemoAnother | com.wesoft.FastlaneDemo.another | FastlaneAnother, FastlaneAnotherQA | .env.another |
+   | FastlaneDemo        | com.FastlaneDemo.main    | FastlaneDemo, FastlaneDemoQA       | .env.main    |
+   | FastlaneDemoAnother | com.FastlaneDemo.another | FastlaneAnother, FastlaneAnotherQA | .env.another |
    
    - `.env.main`填写对应的`APP_IDENTIFIER和SCHEME_NAME`
      
      ```ruby
      # .env.main
-     APP_IDENTIFIER = "com.wesoft.FastlaneDemo.main"
+     APP_IDENTIFIER = "com.FastlaneDemo.main"
      TARGET_NAME = "FastlaneDemo"
      SCHEME_NAME = "FaslaneDemo"
      SCHEME_NAME_QA = "FaslaneDemoQA"
@@ -177,7 +177,7 @@
      
      ```ruby
      # .env.another
-     APP_IDENTIFIER = "com.wesoft.FastlaneDemo.main"
+     APP_IDENTIFIER = "com.FastlaneDemo.main"
      TARGET_NAME = "FastlaneDemoAnother"
      SCHEME_NAME = "FaslaneDemoAnother"
      SCHEME_NAME_QA = "FaslaneDemoAnotherQA"

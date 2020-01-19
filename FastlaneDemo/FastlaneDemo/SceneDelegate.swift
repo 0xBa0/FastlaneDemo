@@ -2,8 +2,8 @@
 //  SceneDelegate.swift
 //  FastlaneDemo
 //
-//  Created by Zack.Zhang on 16/1/2020.
-//  Copyright © 2020 Zack.Zhang. All rights reserved.
+
+//
 //
 
 import UIKit
