@@ -1,0 +1,84 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+output_directory = "./fastlane/build"
+
+platform :ios do
+	desc "Description of what the lane does"
+	lane :custom_lane do
+    	# add actions here: https://docs.fastlane.tools/actions
+	    cocoapods
+		gym(scheme: "FastlaneDemo", 
+	        configuration: "Release",
+	        output_directory: output_directory,
+	        output_name: "FastlaneDemo",
+	        clean: true,
+	        export_method:"development")
+  	end
+
+  	desc "Deploy one target for Product"
+	lane :deploy_product do
+		build_number = get_build_number_from_plist(
+			target: ENV['TARGET_NAME'],
+			plist_build_setting_support: true,
+			)
+		version_number = get_version_number(
+			target: ENV['TARGET_NAME'],
+	 		)
+		gym(scheme: ENV['SCHEME_NAME'],
+		 	configuration: "Release",
+		 	output_directory: output_directory,
+		 	output_name: ENV['SCHEME_NAME']+"-V"+version_number+"("+build_number+")",
+		 	clean: true,
+		 	export_method:"ad-hoc")
+	end
+
+	desc "Deploy one target for QA"
+	lane :deploy_QA do
+		project_name = 'FastlaneDemo'  
+		build_number = get_build_number_from_plist(
+			target: ENV['TARGET_NAME'],
+			plist_build_setting_support: true,
+			)
+		version_number = get_version_number(
+			target: ENV['TARGET_NAME'],
+	 		)
+		gym(scheme: ENV['SCHEME_NAME_QA'],
+		 	configuration: "ReleaseQA",
+		 	output_directory: output_directory,
+		 	output_name: ENV['SCHEME_NAME_QA']+"-V"+version_number+"("+build_number+")",
+		 	clean: true,
+		 	export_method:"development")
+	end
+
+	desc "Deploy multi targets"
+	lane :deploy_all do
+		# 如果需要pod install，则打开#cocoapods的注释
+		#cocoapods
+
+		# 执行打包操作
+		sh "fastlane deploy_QA --env main"
+		sh "fastlane deploy_product --env main"
+
+		sh "fastlane deploy_QA --env another"
+		sh "fastlane deploy_product --env another"
+
+		# 打开文件夹
+		sh "open ."
+	end
+
+end

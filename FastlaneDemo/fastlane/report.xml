@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001156">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: fastlane deploy_QA --env main" time="11.026865">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: open ." time="0.039101">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
